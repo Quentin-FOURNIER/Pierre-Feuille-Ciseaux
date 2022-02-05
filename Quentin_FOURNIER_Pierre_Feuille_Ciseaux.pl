@@ -27,7 +27,6 @@ strategieCst(_N,_R,pierre).
 
 
 
-
 %%%%%%%%%%%%%%%%%%%%%%% STRATEGIE01 %%%%%%%%%%%%%%%%%%%%%%%
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
@@ -148,5 +147,36 @@ strategie13(_N,[[C1,_C2]|_L], pierre) :-
 
 strategie13(_N,[[C1,_C2]|_L], ciseaux) :-
     C1 == pierre.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%% STRATEGIE14 %%%%%%%%%%%%%%%%%%%%%%%
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% Stratégie pour le joueur 1 qui joue en fonction de son  %
+% dernier coup et le répète s'il a été gagnant.	          %
+% Sinon change de coup					  %
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+
+strategie14(_N,[], papier).
+
+strategie14(_N,[[C1,C2]|_L], C1) :-
+    C1 == ciseaux, C2 == papier;
+    C1 == papier, C2 == pierre;
+    C1 == pierre, C2 == ciseaux.
+
+strategie14(_N,[[C1,C2]|_L], pierre) :-
+    C1 == ciseaux, 
+    C2 \== papier.
+
+strategie14(_N,[[C1,C2]|_L], papier) :-
+    C1 == pierre, 
+    C2 \== ciseaux.
+
+strategie14(_N,[[C1,C2]|_L], ciseaux) :-
+    C1 == papier, 
+    C2 \== pierre.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
