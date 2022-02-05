@@ -88,3 +88,19 @@ strategie03(N,_R,feuille) :-
 	N mod 2 =\= 0.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%% STRATEGIE11 %%%%%%%%%%%%%%%%%%%%%%%
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% Stratégie qui répète le dernier coup du joueur 2	  %
+% papier, ou n'importe quoi, quand il n'y a pas de 	  %
+% dernier coup (si c'est le premier coup)                 %
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+
+strategie11(_N,[],papier).
+
+strategie11(_N,[[_C1,C2]|_L],C2).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
