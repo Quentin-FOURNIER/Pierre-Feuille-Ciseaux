@@ -59,7 +59,7 @@ strategie02(N,_R,papier) :-
 strategie02(N,_R,ciseaux) :-
     N mod 3 =:= 1.
 
-strategie02(N,_R,feuille) :-
+strategie02(N,_R,pierre) :-
     N mod 3 =:= 2.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -73,7 +73,7 @@ strategie02(N,_R,feuille) :-
 % prévoir en fonction du numéro de la manche		  %
 % N multiple de 5 => papier				  %
 % N multiple de 2 et non multiple de 5 => ciseaux	  %
-% Sinon => feuille					  %
+% Sinon => pierre					  %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 
 strategie03(N,_R,papier) :-
@@ -83,7 +83,7 @@ strategie03(N,_R,ciseaux) :-
 	N mod 5 =\= 0,
 	N mod 2 =:= 0.
 
-strategie03(N,_R,feuille) :-
+strategie03(N,_R,pierre) :-
 	N mod 5 =\= 0,
 	N mod 2 =\= 0.
 
@@ -102,5 +102,26 @@ strategie03(N,_R,feuille) :-
 strategie11(_N,[],papier).
 
 strategie11(_N,[[_C1,C2]|_L],C2).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%% STRATEGIE12 %%%%%%%%%%%%%%%%%%%%%%%
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% Stratégie pour le joueur 1 qui joue en fonction du      %
+% dernier coup du joueur 2 pour le contrer en supposant   %
+% que le joueur 2 ne changera pas de coup		  %
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+
+strategie12(_N,[], papier).
+strategie12(_N,[[_C1,C2]|_L], papier) :-
+    C2 == pierre.
+strategie12(_N,[[_C1,C2]|_L], pierre) :-
+    C2 == ciseaux.
+strategie12(_N,[[_C1,C2]|_L], ciseaux) :-
+    C2 == papier.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
