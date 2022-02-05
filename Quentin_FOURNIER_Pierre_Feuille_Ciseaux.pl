@@ -63,3 +63,28 @@ strategie02(N,_R,feuille) :-
     N mod 3 =:= 2.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%% STRATEGIE03 %%%%%%%%%%%%%%%%%%%%%%%
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% stratégie qui détermine le coup de manière difficile à  %
+% prévoir en fonction du numéro de la manche		  %
+% N multiple de 5 => papier				  %
+% N multiple de 2 et non multiple de 5 => ciseaux	  %
+% Sinon => feuille					  %
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+
+strategie03(N,_R,papier) :-
+	N mod 5 =:= 0.
+
+strategie03(N,_R,ciseaux) :-
+	N mod 5 =\= 0,
+	N mod 2 =:= 0.
+
+strategie03(N,_R,feuille) :-
+	N mod 5 =\= 0,
+	N mod 2 =\= 0.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
