@@ -15,6 +15,22 @@
 
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%% UTILS %%%%%%%%%%%%%%%%%%%%%%%%%
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % %	   
+% Permet de récupérer le coup du joueur deux, d'il y a 2  %
+% tours                                            	  %
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+
+popCouple2([[_C1,C2]|_L],C2).
+
+pop1([_P|L],F):-
+	popCouple2(L,F).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%% STRATEGIECST  %%%%%%%%%%%%%%%%%%%%%
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %	   
@@ -178,5 +194,33 @@ strategie14(_N,[[C1,C2]|_L], papier) :-
 strategie14(_N,[[C1,C2]|_L], ciseaux) :-
     C1 == papier, 
     C2 \== pierre.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%% STRATEGIE21 %%%%%%%%%%%%%%%%%%%%%%%
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% Stratégie pour le joueur 1 qui regarde les 2 dernières  %
+% manches et suppose que le joueur 2 alterne sur 2	  % 
+% stratégies seulement					  %
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+
+strategie21(_N, R, papier) :-
+    length(R, Len),
+    Len < 2.
+
+strategie21(_N, R, papier) :-
+    pop1(R,J),
+    J==pierre.
+
+strategie21(_N, R, pierre) :-
+    pop1(R,J),
+    J==ciseaux.
+
+strategie21(_N, R, ciseaux) :-
+    pop1(R,J),
+    J==papier.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
