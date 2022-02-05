@@ -116,12 +116,37 @@ strategie11(_N,[[_C1,C2]|_L],C2).
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 
 strategie12(_N,[], papier).
+
 strategie12(_N,[[_C1,C2]|_L], papier) :-
     C2 == pierre.
+
 strategie12(_N,[[_C1,C2]|_L], pierre) :-
     C2 == ciseaux.
+
 strategie12(_N,[[_C1,C2]|_L], ciseaux) :-
     C2 == papier.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%% STRATEGIE13 %%%%%%%%%%%%%%%%%%%%%%%
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% Stratégie pour le joueur 1 qui joue en fonction de son  %
+% dernier coup et suppose que le joueur 2 va vouloir 	  %
+% contrer ce dernier coup				  %
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+
+strategie13(_N,[], papier).
+
+strategie13(_N,[[C1,_C2]|_L], papier) :-
+    C1 == ciseaux.
+
+strategie13(_N,[[C1,_C2]|_L], pierre) :-
+    C1 == papier.
+
+strategie13(_N,[[C1,_C2]|_L], ciseaux) :-
+    C1 == pierre.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
