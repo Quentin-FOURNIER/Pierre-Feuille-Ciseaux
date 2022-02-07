@@ -435,3 +435,65 @@ strategieN1(_N, Liste,papier) :-
     Papier > Pierre.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%% STRATEGIEN2 %%%%%%%%%%%%%%%%%%%%%%%
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% stratégie pour le joueur 1 qui regarde toutes les 	  %
+% manches pour voir si l'un des coups du joueurs 2 est    %
+% plus joué en moyenne				  	  %
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+
+coupleJ2(_K,[], Z1,Z2,Z3,Z1, Z2,Z3).
+
+% ciseaux
+coupleJ2(Iterateur, [[_Bin|Elem]|Liste], EntryPierre,EntryPapier,EntryCiseaux,ReturnPierre, ReturnPapier, ReturnCiseaux) :-
+    Iterateur1 is Iterateur + 1,
+    Elem == [ciseaux],
+    NewPierre is EntryPierre,
+    NewCiseaux is EntryCiseaux+1,
+    NewPapier is EntryPapier,
+    coupleJ2(Iterateur1, Liste, NewPierre,NewPapier,NewCiseaux,ReturnPierre, ReturnPapier, ReturnCiseaux).
+
+% Papier
+coupleJ2(Iterateur, [[_Bin|Elem]|Liste], EntryPierre,EntryPapier,EntryCiseaux,ReturnPierre, ReturnPapier, ReturnCiseaux) :-
+    Iterateur1 is Iterateur + 1,
+    Elem == [papier],
+    NewPierre is EntryPierre,
+    NewCiseaux is EntryCiseaux,
+    NewPapier is EntryPapier+1,
+    coupleJ2(Iterateur1, Liste, NewPierre,NewPapier,NewCiseaux,ReturnPierre, ReturnPapier, ReturnCiseaux).
+
+% Pierre
+coupleJ2(Iterateur, [[_Bin|Elem]|Liste], EntryPierre,EntryPapier,EntryCiseaux,ReturnPierre, ReturnPapier, ReturnCiseaux) :-
+    Iterateur1 is Iterateur + 1,
+    Elem == [pierre],
+    NewPierre is EntryPierre+1,
+    NewCiseaux is EntryCiseaux,
+    NewPapier is EntryPapier,
+    coupleJ2(Iterateur1, Liste, NewPierre,NewPapier,NewCiseaux,ReturnPierre, ReturnPapier, ReturnCiseaux).
+
+% pierre
+strategieN2(_N, Liste,papier) :-
+    coupleJ2(0,Liste,0,0,0,Pierre,Papier,Ciseaux),
+    Pierre >= Papier,
+    Pierre >= Ciseaux.
+
+% ciseaux
+strategieN2(_N, Liste,pierre) :-
+    coupleJ2(0,Liste,0,0,0,Pierre,Papier,Ciseaux),
+    Ciseaux >= Papier,
+    Ciseaux > Pierre.
+
+% papier
+strategieN2(_N, Liste,ciseaux) :-
+    coupleJ2(0,Liste,0,0,0,Pierre,Papier,Ciseaux),
+    Papier > Ciseaux,
+    Papier > Pierre.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
